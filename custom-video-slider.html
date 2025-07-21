@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Video Carousel</title>
+    <style>
+      .carousel-container {
+        margin: 60px auto;
+        padding: 24px;
+        max-width: 100vw;
+        width: 100%;
+        border-radius: 24px;
+        position: relative;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+      .carousel {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .carousel-track {
+        display: flex;
+        width: 100%;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+        gap: 10px;
+        box-sizing: border-box;
+        overflow-x: visible;
+      }
+      .carousel-slide {
+        min-width: calc(25% - 18px); /* 4 videos per view on large */
+        max-width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+        position: relative;
+        transition: opacity 0.5s;
+      }
+      .carousel-slide .custom-play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 54px;
+        height: 54px;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        border: none;
+        outline: none;
+        opacity: 0.95;
+      }
+      .carousel-slide .custom-play-btn:hover {
+        background: #ff6b00;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08);
+      }
+      .carousel-slide .custom-play-btn svg {
+        width: 28px;
+        height: 28px;
+        fill: #134c46;
+      }
+      .carousel-slide .custom-pause-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        width: 54px;
+        height: 54px;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        border: none;
+        outline: none;
+        opacity: 0.95;
+      }
+      .carousel-slide .custom-pause-btn svg {
+        width: 28px;
+        height: 28px;
+        fill: #134c46;
+      }
+      .carousel-slide .custom-pause-btn:hover {
+        background: #ff6b00;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08);
+      }
+      .carousel-slide video {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+        background: #000;
+        aspect-ratio: 2/4;
+        object-fit: cover;
+        pointer-events: auto;
+        height: 700px;
+        min-height: 400px;
+        transition: none;
+      }
+
+      .carousel-slide {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+        background: #000;
+        aspect-ratio: 2/4;
+        object-fit: cover;
+        height: 400px;
+        min-height: 300px;
+        transition: none;
+      }
+
+      .carousel-dots {
+        display: flex;
+        gap: 4px;
+        margin-top: 24px;
+        justify-content: center;
+        align-items: center;
+      }
+      .carousel-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin: 0 6px;
+        background-color: #bbb; /* Inactive color */
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      /* Active dot style */
+      .carousel-dot.active {
+        background-color: #ff6b00; /* Active color (e.g., orange accent) */
+        transform: scale(1.3); /* Slightly enlarge for emphasis */
+      }
+      @media (max-width: 600px) {
+        .carousel-container {
+          padding: 8px;
+        }
+        .carousel-track {
+          gap: 4px;
+        }
+        .carousel-slide {
+          min-width: 100vw; /* 1 video per view, fit viewport */
+          max-width: 100vw;
+        }
+        .carousel-slide video,
+        .carousel-slide {
+          width: 100vw;
+          max-width: 100vw;
+          height: 220px;
+          border-radius: 8px;
+        }
+      }
+      @media (min-width: 601px) and (max-width: 992px) {
+        .carousel-container {
+          padding: 12px;
+        }
+        .carousel-track {
+          gap: 8px;
+        }
+        .carousel-slide {
+          min-width: calc(33.33vw - 10px); /* 3 videos per view, fit viewport */
+          max-width: 33.33vw;
+        }
+        .carousel-slide video,
+        .carousel-slide {
+          width: 100%;
+          max-width: 100%;
+          height: 300px;
+          border-radius: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel-container">
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <button class="custom-play-btn" aria-label="Play">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="32" fill="none" />
+                <polygon points="25,18 25,46 46,32" />
+              </svg>
+            </button>
+            <button class="custom-pause-btn" aria-label="Pause">
+              <svg viewBox="0 0 64 64">
+                <rect x="20" y="18" width="8" height="28" />
+                <rect x="36" y="18" width="8" height="28" />
+              </svg>
+            </button>
+            <video
+              src="https://www.w3schools.com/html/mov_bbb.mp4"
+              poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=700&q=80"
+              controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+              preload="none"
+            ></video>
+          </div>
+          <div class="carousel-slide">
+            <button class="custom-play-btn" aria-label="Play">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="32" fill="none" />
+                <polygon points="25,18 25,46 46,32" />
+              </svg>
+            </button>
+            <button class="custom-pause-btn" aria-label="Pause">
+              <svg viewBox="0 0 64 64">
+                <rect x="20" y="18" width="8" height="28" />
+                <rect x="36" y="18" width="8" height="28" />
+              </svg>
+            </button>
+            <video
+              src="https://www.w3schools.com/html/movie.mp4"
+              poster="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=700&q=80"
+              controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+              preload="none"
+            ></video>
+          </div>
+          <div class="carousel-slide">
+            <button class="custom-play-btn" aria-label="Play">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="32" fill="none" />
+                <polygon points="25,18 25,46 46,32" />
+              </svg>
+            </button>
+            <button class="custom-pause-btn" aria-label="Pause">
+              <svg viewBox="0 0 64 64">
+                <rect x="20" y="18" width="8" height="28" />
+                <rect x="36" y="18" width="8" height="28" />
+              </svg>
+            </button>
+            <video
+              src="https://www.w3schools.com/html/mov_bbb.mp4"
+              poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=700&q=80"
+              controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+              preload="none"
+            ></video>
+          </div>
+          <div class="carousel-slide">
+            <button class="custom-play-btn" aria-label="Play">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="32" fill="none" />
+                <polygon points="25,18 25,46 46,32" />
+              </svg>
+            </button>
+            <button class="custom-pause-btn" aria-label="Pause">
+              <svg viewBox="0 0 64 64">
+                <rect x="20" y="18" width="8" height="28" />
+                <rect x="36" y="18" width="8" height="28" />
+              </svg>
+            </button>
+            <video
+              src="https://www.w3schools.com/html/movie.mp4"
+              poster="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=700&q=80"
+              controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+              preload="none"
+            ></video>
+          </div>
+          <div class="carousel-slide">
+            <button class="custom-play-btn" aria-label="Play">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="32" fill="none" />
+                <polygon points="25,18 25,46 46,32" />
+              </svg>
+            </button>
+            <button class="custom-pause-btn" aria-label="Pause">
+              <svg viewBox="0 0 64 64">
+                <rect x="20" y="18" width="8" height="28" />
+                <rect x="36" y="18" width="8" height="28" />
+              </svg>
+            </button>
+            <video
+              src="https://www.w3schools.com/html/mov_bbb.mp4"
+              poster="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80"
+              controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+              preload="none"
+            ></video>
+          </div>
+          <div class="carousel-slide">
+            <button class="custom-play-btn" aria-label="Play">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="32" fill="none" />
+                <polygon points="25,18 25,46 46,32" />
+              </svg>
+            </button>
+            <button class="custom-pause-btn" aria-label="Pause">
+              <svg viewBox="0 0 64 64">
+                <rect x="20" y="18" width="8" height="28" />
+                <rect x="36" y="18" width="8" height="28" />
+              </svg>
+            </button>
+            <video
+              src="https://www.w3schools.com/html/movie.mp4"
+              poster="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=700&q=80"
+              controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+              preload="none"
+            ></video>
+          </div>
+          <div class="carousel-slide">
+            <button class="custom-play-btn" aria-label="Play">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="32" fill="none" />
+                <polygon points="25,18 25,46 46,32" />
+              </svg>
+            </button>
+            <button class="custom-pause-btn" aria-label="Pause">
+              <svg viewBox="0 0 64 64">
+                <rect x="20" y="18" width="8" height="28" />
+                <rect x="36" y="18" width="8" height="28" />
+              </svg>
+            </button>
+            <video
+              src="https://www.w3schools.com/html/mov_bbb.mp4"
+              poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=700&q=80"
+              controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+              preload="none"
+            ></video>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+    <script>
+      const track = document.querySelector(".carousel-track");
+      const slides = Array.from(document.querySelectorAll(".carousel-slide"));
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const dotsContainer = document.getElementById("carouselDots");
+      let current = 0;
+      const total = slides.length;
+
+      // Responsive visibleCount
+      function getVisibleCount() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 992) return 3;
+        return 4;
+      }
+      function updateCarousel() {
+        const visibleCount = getVisibleCount();
+        // Calculate total width of visible slides
+        const slideWidth = track.offsetWidth / visibleCount;
+        track.style.transition = "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+        track.style.transform = `translateX(-${current * slideWidth}px)`;
+        document.querySelectorAll(".carousel-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === current);
+        });
+        // Show all slides for smooth animation
+        slides.forEach((slide, i) => {
+          slide.style.display = "flex";
+        });
+      }
+      function goToSlide(idx) {
+        const visibleCount = getVisibleCount();
+        current = Math.max(0, Math.min(idx, total - visibleCount));
+        updateCarousel();
+      }
+      // Dots
+      function renderDots() {
+        const visibleCount = getVisibleCount();
+        dotsContainer.innerHTML = "";
+        for (let i = 0; i <= total - visibleCount; i++) {
+          const dot = document.createElement("span");
+          dot.className = "carousel-dot" + (i === current ? " active" : "");
+          dot.addEventListener("click", () => goToSlide(i));
+          dotsContainer.appendChild(dot);
+        }
+      }
+      // Play button logic
+      document.querySelectorAll(".carousel-slide").forEach((slide) => {
+        const playBtn = slide.querySelector(".custom-play-btn");
+        const pauseBtn = slide.querySelector(".custom-pause-btn");
+        const video = slide.querySelector("video");
+        playBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          video.removeAttribute("controls");
+          video.setAttribute(
+            "controlslist",
+            "nodownload nofullscreen noremoteplayback noplaybackrate"
+          );
+          video.play();
+          playBtn.style.display = "none";
+          pauseBtn.style.display = "flex";
+          video.style.pointerEvents = "auto";
+          slide.classList.add("video-playing");
+        });
+        pauseBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          video.pause();
+          pauseBtn.style.display = "none";
+          playBtn.style.display = "flex";
+          slide.classList.remove("video-playing");
+        });
+        video.addEventListener("ended", function () {
+          pauseBtn.style.display = "none";
+          playBtn.style.display = "flex";
+          slide.classList.remove("video-playing");
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        renderDots();
+        updateCarousel();
+      });
+      renderDots();
+      updateCarousel();
+    </script>
+  </body>
+</html>

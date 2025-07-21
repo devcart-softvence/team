@@ -1,0 +1,331 @@
+{% schema %}
+{
+  "name": "Customizable Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_desc",
+      "label": "Footer Description",
+      "default": "some customers indicate that<br>consumer responses to marketing<br>have become less predictable"
+    },
+
+    { "type": "text", "id": "col1_title", "label": "Column 1 Title", "default": "Product" },
+    { "type": "text", "id": "col1_link1_label", "label": "Column 1 Link 1 Label", "default": "Logo Design" },
+    { "type": "url", "id": "col1_link1_url", "label": "Column 1 Link 1 URL" },
+    { "type": "text", "id": "col1_link2_label", "label": "Column 1 Link 2 Label", "default": "Graphic Design" },
+    { "type": "url", "id": "col1_link2_url", "label": "Column 1 Link 2 URL" },
+    { "type": "text", "id": "col1_link3_label", "label": "Column 1 Link 3 Label", "default": "Website Design" },
+    { "type": "url", "id": "col1_link3_url", "label": "Column 1 Link 3 URL" },
+    { "type": "text", "id": "col1_link4_label", "label": "Column 1 Link 4 Label", "default": "Mobile Design" },
+    { "type": "url", "id": "col1_link4_url", "label": "Column 1 Link 4 URL" },
+
+    { "type": "text", "id": "col2_title", "label": "Column 2 Title", "default": "Company" },
+    { "type": "text", "id": "col2_link1_label", "label": "Column 2 Link 1 Label", "default": "Services" },
+    { "type": "url", "id": "col2_link1_url", "label": "Column 2 Link 1 URL" },
+    { "type": "text", "id": "col2_link2_label", "label": "Column 2 Link 2 Label", "default": "About Us" },
+    { "type": "url", "id": "col2_link2_url", "label": "Column 2 Link 2 URL" },
+    { "type": "text", "id": "col2_link3_label", "label": "Column 2 Link 3 Label", "default": "Project" },
+    { "type": "url", "id": "col2_link3_url", "label": "Column 2 Link 3 URL" },
+    { "type": "text", "id": "col2_link4_label", "label": "Column 2 Link 4 Label", "default": "Customer" },
+    { "type": "url", "id": "col2_link4_url", "label": "Column 2 Link 4 URL" },
+
+    { "type": "text", "id": "col3_title", "label": "Column 3 Title", "default": "QUICK CONTACT" },
+    { "type": "text", "id": "col3_link1_label", "label": "Column 3 Row 1", "default": "+62 896 777 8907" },
+    { "type": "text", "id": "col3_link2_label", "label": "Column 3 Row 2", "default": "infodesign.com" },
+    { "type": "text", "id": "col3_link3_label", "label": "Column 3 Link 3 Label", "default": "Contact Us" },
+    { "type": "url", "id": "col3_link3_url", "label": "Column 3 Link 3 URL" },
+    { "type": "text", "id": "col3_link4_label", "label": "Column 3 Link 4 Label", "default": "Terms Of Service" },
+    { "type": "url", "id": "col3_link4_url", "label": "Column 3 Link 4 URL" },
+
+    {
+      "type": "color",
+      "id": "footer_bg",
+      "label": "Footer Background",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "footer_text_color",
+      "label": "Footer Text Color",
+      "default": "#444"
+    },
+    {
+      "type": "color",
+      "id": "footer_link_hover_color",
+      "label": "Footer Link Hover Color",
+      "default": "#ff7f32"
+    },
+    {
+      "type": "font_picker",
+      "id": "footer_font",
+      "label": "Footer Font",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "footer_heading_font_weight",
+      "label": "Footer Heading Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "footer_link_font_weight",
+      "label": "Footer Link Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "footer_heading_font_size",
+      "label": "Footer Heading Font Size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "footer_link_font_size",
+      "label": "Footer Link Font Size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 17,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "footer_desc_font_size",
+      "label": "Footer Description Font Size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 17,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "footer_copy_font_size",
+      "label": "Footer Copyright Font Size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 17,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "footer_logo_width",
+      "label": "Footer Logo Width (px)",
+      "min": 20,
+      "max": 500,
+      "step": 5,
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "footer_logo_height",
+      "label": "Footer Logo Height (px)",
+      "min": 20,
+      "max": 500,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "footer_copyright",
+      "label": "Copyright Text",
+      "default": "Copyright @ 2024 SV All rights reserved"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customizable Footer"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .footer {
+    background: {{ section.settings.footer_bg }};
+    color: {{ section.settings.footer_text_color }};
+    font-family: {{ section.settings.footer_font.family }}, Arial, sans-serif;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 40px 0 40px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo-section {
+    flex: 1.5;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-logo {
+    width: {{ section.settings.footer_logo_width }}px;
+    height: {{ section.settings.footer_logo_height }}px;
+    margin-bottom: 20px;
+  }
+
+  .footer-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .footer-desc {
+    font-size: {{ section.settings.footer_desc_font_size }}px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer-links-section {
+    flex: 4;
+    display: flex;
+    justify-content: space-between;
+    min-width: 600px;
+  }
+
+  .footer-col {
+    min-width: 150px;
+  }
+
+  .footer-col h4 {
+    font-size: {{ section.settings.footer_heading_font_size }}px;
+    font-weight: {{ section.settings.footer_heading_font_weight }};
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 14px;
+    font-size: {{ section.settings.footer_link_font_size }}px;
+    font-weight: {{ section.settings.footer_link_font_weight }};
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a {
+    color: {{ section.settings.footer_text_color }};
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover {
+    color: {{ section.settings.footer_link_hover_color }};
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #eee;
+    margin-top: 35px;
+    padding: 18px 0;
+    text-align: center;
+    font-size: {{ section.settings.footer_copy_font_size }}px;
+  }
+
+  @media (max-width: 900px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 40px 20px 0 20px;
+    }
+    .footer-links-section {
+      flex-direction: column;
+      min-width: 0;
+      width: 100%;
+      margin-top: 30px;
+    }
+    .footer-col {
+      margin-bottom: 25px;
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-logo-section">
+      <div class="footer-logo">
+        {% if section.settings.footer_logo != blank %}
+          <img src="{{ section.settings.footer_logo | img_url: 'medium' }}" alt="Footer Logo">
+        {% endif %}
+      </div>
+      <p class="footer-desc">{{ section.settings.footer_desc }}</p>
+    </div>
+    <div class="footer-links-section">
+      <div class="footer-col">
+        <h4>{{ section.settings.col1_title }}</h4>
+        <ul>
+          <li>
+            <a href="{{ section.settings.col1_link1_url }}">{{ section.settings.col1_link1_label }}</a>
+          </li>
+          <li>
+            <a href="{{ section.settings.col1_link2_url }}">{{ section.settings.col1_link2_label }}</a>
+          </li>
+          <li>
+            <a href="{{ section.settings.col1_link3_url }}">{{ section.settings.col1_link3_label }}</a>
+          </li>
+          <li>
+            <a href="{{ section.settings.col1_link4_url }}">{{ section.settings.col1_link4_label }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>{{ section.settings.col2_title }}</h4>
+        <ul>
+          <li>
+            <a href="{{ section.settings.col2_link1_url }}">{{ section.settings.col2_link1_label }}</a>
+          </li>
+          <li>
+            <a href="{{ section.settings.col2_link2_url }}">{{ section.settings.col2_link2_label }}</a>
+          </li>
+          <li>
+            <a href="{{ section.settings.col2_link3_url }}">{{ section.settings.col2_link3_label }}</a>
+          </li>
+          <li>
+            <a href="{{ section.settings.col2_link4_url }}">{{ section.settings.col2_link4_label }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>{{ section.settings.col3_title }}</h4>
+        <ul>
+          <li>{{ section.settings.col3_link1_label }}</li>
+          <li>{{ section.settings.col3_link2_label }}</li>
+          <li>
+            <a href="{{ section.settings.col3_link3_url }}">{{ section.settings.col3_link3_label }}</a>
+          </li>
+          <li>
+            <a href="{{ section.settings.col3_link4_url }}">{{ section.settings.col3_link4_label }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">{{ section.settings.footer_copyright }}</div>
+</footer>

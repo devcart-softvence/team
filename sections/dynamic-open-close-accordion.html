@@ -1,0 +1,280 @@
+<style>
+
+.accordion-header {
+  background-color: #d4edda; /* Light green */
+}
+  .gpc-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .gpc-left {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .gpc-left h1 {
+    font-size: 3.5rem;
+    margin: 0;
+  }
+
+  .gpc-right {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .gpc-accordion {
+    margin-bottom: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    padding-left: 16px;
+    border-radius: 12px;
+  }
+
+  .gpc-accordion::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 0;
+    width: 8px;
+    background: gray;
+    border-radius: 9999px;
+    transition: background 0.3s ease;
+  }
+
+  .gpc-accordion input[type="checkbox"] {
+    display: none;
+  }
+
+  .gpc-accordion-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 16px;
+    background-color: #ffffff;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+
+  .gpc-accordion-label:hover {
+    background-color: #f0f0f0;
+  }
+
+  .gpc-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 16px;
+    background: #fff;
+    font-size: 1rem;
+  }
+
+  .gpc-accordion input[type="checkbox"]:checked ~ .gpc-accordion-content {
+    max-height: 300px;
+    padding: 16px;
+  }
+
+  @supports selector(:has(*)) {
+    .gpc-accordion:has(input[type="checkbox"]:checked)::before {
+      background: #EE7173;
+    }
+  }
+  
+  
+  
+ .blink {
+  background: linear-gradient(to right, #EE7173 0%, #FDB680 50%, #EE7173 100%); /* Gradient from pink to orange */
+  background-clip: text; /* Apply the gradient to the text */
+  color: transparent; /* Make the text transparent so the background shows */
+  font-weight: 600; /* Optional: bold the text */
+  font-size: 4rem; /* Optional: adjust the font size */
+}
+  
+  
+  
+  .gpc-accordion-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 16px;
+  background-color: #ffffff;
+  transition: background 0.3s ease;
+}
+
+.gpc-label-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.icon-container{
+    width: 145px;
+  height: 80px;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.gpc-label-icon {
+  width: 100%;
+  height: 100%;
+  
+  border-radius: 12px; /* fully rounded image */
+}
+  
+  
+  
+  
+.gpc-word-rotator {
+  position: relative;
+  height: 4em; /* Adjust based on your font size */
+  overflow: hidden;
+  font-size: 4rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.gpc-word-rotator span {
+  position: absolute;
+  width: 100%;
+  text-align: left;
+  opacity: 0;
+  animation: gpc-blink 6s steps(1, end) infinite;
+}
+
+.gpc-word-rotator span:nth-child(1) {
+  animation-delay: 0s;
+}
+.gpc-word-rotator span:nth-child(2) {
+  animation-delay: 2s;
+}
+.gpc-word-rotator span:nth-child(3) {
+  animation-delay: 4s;
+}
+
+@keyframes gpc-blink {
+  0% { opacity: 1; }
+  33.333% { opacity: 0; }
+  100% { opacity: 0; }
+}
+</style>
+
+<div class="gpc-container">
+  <div class="gpc-left">
+  <h1>Hears will upgrade your</h1>
+  <div class="gpc-word-rotator">
+    <span class="blink">Focus</span>
+    <span class="blink">Festivals</span>
+    <span class="blink">Productivity</span>
+    <!--<span class="blink">Travel</span>-->
+    <!--<span class="blink">Clubbing</span>-->
+    <!--<span class="blink">Concert Experience</span>-->
+  </div>
+</div>
+  <div class="gpc-right">
+    <div class="gpc-accordion">
+      <input type="checkbox" id="acc1" class="gpc-accordion-toggle">
+      <label class="gpc-accordion-label" for="acc1">
+  <span class="gpc-label-title">Premium <br />hearing <br />protection</span>
+  
+  <div class="icon-container">
+      <img src="https://cdn.shopify.com/s/files/1/0637/1596/7094/files/download_2.png?v=1748477327"  alt="Icon" class="gpc-label-icon">
+  </div>
+</label>
+      <div class="gpc-accordion-content">
+        <p>A thin and flexible membrane filter that is made from materials that imitate a second eardrum.</p>
+      </div>
+    </div>
+
+    <div class="gpc-accordion">
+      <input type="checkbox" id="acc2" class="gpc-accordion-toggle">
+      <label class="gpc-accordion-label" for="acc1">
+  <span class="gpc-label-title">Keep the <br />music clear</span>
+  <div class="icon-container">
+      <img src="https://cdn.shopify.com/s/files/1/0637/1596/7094/files/download_3.png?v=1748477326" alt="Icon" class="gpc-label-icon">
+  </div>
+</label>
+      <div class="gpc-accordion-content">
+        <p>Our filter enhances music clarity by filtering out noise and unnecessary tones.</p>
+      </div>
+    </div>
+
+    <div class="gpc-accordion">
+      <input type="checkbox" id="acc3" class="gpc-accordion-toggle">
+      <label class="gpc-accordion-label" for="acc1">
+  <span class="gpc-label-title">Hear voices <br /> better</span>
+  <div class="icon-container">
+      <img src="https://cdn.shopify.com/s/files/1/0637/1596/7094/files/download_4.png?v=1748477327"  alt="Icon" class="gpc-label-icon">
+  </div>
+</label>
+      <div class="gpc-accordion-content">
+        <p>Our filter improves voice clarity, ensuring voices are heard more prominently and clearly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const accordions = document.querySelectorAll(".gpc-accordion");
+    let lastScrollTop = window.scrollY || window.pageYOffset;
+
+    // ➤ IntersectionObserver: Opens accordion when centered
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const checkbox = entry.target.querySelector(".gpc-accordion-toggle");
+          if (!checkbox) return;
+
+          const scrollTop = window.scrollY || window.pageYOffset;
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.body.scrollHeight;
+          const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
+          const scrollingUp = scrollTop < lastScrollTop;
+
+          if (entry.isIntersecting && !(scrollingUp && distanceFromBottom <= 700 && scrollTop > 100)) {
+            checkbox.checked = true;
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: 0.5,
+      }
+    );
+
+    accordions.forEach((accordion) => {
+      observer.observe(accordion);
+    });
+
+    // ➤ Scroll: Close accordion only if its position is near bottom
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const scrollingUp = scrollTop < lastScrollTop;
+
+      if (scrollingUp) {
+        accordions.forEach((accordion) => {
+          const checkbox = accordion.querySelector(".gpc-accordion-toggle");
+          const rect = accordion.getBoundingClientRect();
+          const distanceFromBottom = window.innerHeight - rect.bottom;
+
+          // ✅ Close only if accordion is 700px or less from bottom of viewport
+          if (distanceFromBottom >= -70 && distanceFromBottom <= 0) {
+            if (checkbox) checkbox.checked = false;
+          }
+        });
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  });
+</script>

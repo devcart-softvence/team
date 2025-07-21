@@ -1,0 +1,342 @@
+<style>
+  .faq-section {
+    max-width: 1100px;
+    margin: 48px auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    padding: 40px 32px 32px 32px;
+  }
+  .faq-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin-bottom: 32px;
+    color: #181818;
+  }
+  .faq-tabs {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .faq-tab {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    color: #222;
+    font-size: 1.08rem;
+    font-weight: 600;
+    border-radius: 100px;
+    padding: 10px 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+  }
+  .faq-tab.active {
+    background: #fff7ef;
+    border-color: #fc8a06;
+    color: #fc8a06;
+    box-shadow: 0 2px 8px rgba(252, 138, 6, 0.08);
+  }
+  .faq-content {
+    display: none;
+    animation: fadeIn 0.4s;
+  }
+  .faq-content.active {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .faq-steps {
+    display: none;
+    animation: fadeIn 0.4s;
+  }
+  .faq-steps.active {
+    flex: 2 1 420px;
+    display: flex;
+    gap: 18px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .faq-questions {
+    flex: 1 1 260px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 12px;
+  }
+  .faq-question {
+    font-weight: 600;
+    color: #181818;
+    font-size: 18px;
+    margin-bottom: 2px;
+    transition: all 0.2s;
+  }
+  .faq-question.selected {
+    background: #fc8a06;
+    color: #fff;
+    border-radius: 100px;
+    padding: 10px 18px;
+    display: inline-block;
+  }
+
+  .faq-step {
+    background: #f7f7f7;
+    border-radius: 14px;
+    padding: 28px 22px 18px 22px;
+    min-width: 180px;
+    max-width: 220px;
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    text-align: center;
+  }
+  .faq-step img {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 12px;
+  }
+  .faq-step-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #222;
+  }
+  .faq-step-desc {
+    font-size: 0.98rem;
+    color: #444;
+  }
+  .faq-desc {
+    margin-top: 32px;
+    color: #444;
+    font-size: 1.02rem;
+    text-align: center;
+  }
+  @media (max-width: 900px) {
+    .faq-content.active {
+      flex-direction: column;
+      gap: 24px;
+    }
+    .faq-steps {
+      justify-content: flex-start;
+    }
+  }
+  @media (max-width: 600px) {
+    .faq-section {
+      padding: 18px 4px 18px 4px;
+    }
+    .faq-steps {
+      background: #03081f;
+      padding: 60px;
+      border-radius: 12px;
+    }
+    .faq-title {
+      font-size: 26px;
+    }
+    .faq-tabs {
+      gap: 6px;
+    }
+    .faq-tab {
+      font-size: 0.98rem;
+      padding: 7px 14px;
+    }
+    .faq-step {
+      min-width: 120px;
+      max-width: 100%;
+      padding: 16px 6px 10px 6px;
+    }
+    .faq-questions {
+      gap: 10px;
+    }
+    .faq-question {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<div class="faq-section">
+  <div class="faq-title">Know more about us!</div>
+  <div class="faq-tabs">
+    <button class="faq-tab active" data-tab="faq1">Frequent Questions</button>
+    <button class="faq-tab" data-tab="faq2">Who we are?</button>
+    <button class="faq-tab" data-tab="faq3">Partner Program</button>
+    <button class="faq-tab" data-tab="faq4">Help & Support</button>
+  </div>
+  <div class="faq-content active" id="faq1">
+    <div class="faq-questions">
+      <div class="faq-question selected" data-tab="faq-steps-1">How does Order.UK work?</div>
+      <div class="faq-question" data-tab="faq-steps-2">What payment methods are accepted?</div>
+      <div class="faq-question" data-tab="faq-steps-3">Can I track my order in real-time?</div>
+      <div class="faq-question" data-tab="faq-steps-4">Are there any special discounts or promotions available?</div>
+      <div class="faq-question" data-tab="faq-steps-5">Is Order.UK available in my area?</div>
+    </div>
+    <div class="faq-steps active" id="faq-steps-1">
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
+          alt="Place Order"
+        >
+        <div class="faq-step-title">Place an Order!</div>
+        <div class="faq-step-desc">Place order through our website or Mobile app</div>
+      </div>
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png"
+          alt="Track Progress"
+        >
+        <div class="faq-step-title">Track Progress</div>
+        <div class="faq-step-desc">Your can track your order status with delivery time</div>
+      </div>
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046786.png"
+          alt="Get Order"
+        >
+        <div class="faq-step-title">Get your Order!</div>
+        <div class="faq-step-desc">Receive your order at a lighting fast speed!</div>
+      </div>
+    </div>
+    <div class="faq-steps" id="faq-steps-2">
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
+          alt="Place Order"
+        >
+        <div class="faq-step-title">Place an Order!</div>
+        <div class="faq-step-desc">Place order through our website or Mobile app</div>
+      </div>
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png"
+          alt="Track Progress"
+        >
+        <div class="faq-step-title">Track Progress</div>
+        <div class="faq-step-desc">Your can track your order status with delivery time</div>
+      </div>
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046786.png"
+          alt="Get Order"
+        >
+        <div class="faq-step-title">Get your Order!</div>
+        <div class="faq-step-desc">Receive your order at a lighting fast speed!</div>
+      </div>
+    </div>
+  </div>
+  <div class="faq-content" id="faq2">
+    <div class="faq-questions">
+      <div class="faq-question selected">Who is behind Order.UK?</div>
+      <div class="faq-question">What is our mission?</div>
+      <div class="faq-question">How do we select restaurants?</div>
+    </div>
+    <div class="faq-steps">
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+          alt="Team"
+        >
+        <div class="faq-step-title">Our Team</div>
+        <div class="faq-step-desc">A passionate group dedicated to food delivery excellence.</div>
+      </div>
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png"
+          alt="Mission"
+        >
+        <div class="faq-step-title">Our Mission</div>
+        <div class="faq-step-desc">To make food ordering easy, fast, and enjoyable for everyone.</div>
+      </div>
+    </div>
+  </div>
+  <div class="faq-content" id="faq3">
+    <div class="faq-questions">
+      <div class="faq-question selected">How to become a partner?</div>
+      <div class="faq-question">What are the benefits?</div>
+      <div class="faq-question">How do I get support?</div>
+    </div>
+    <div class="faq-steps">
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
+          alt="Partner"
+        >
+        <div class="faq-step-title">Become a Partner</div>
+        <div class="faq-step-desc">Join our network and grow your business with us.</div>
+      </div>
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png"
+          alt="Benefits"
+        >
+        <div class="faq-step-title">Partner Benefits</div>
+        <div class="faq-step-desc">Access to a large customer base and marketing support.</div>
+      </div>
+    </div>
+  </div>
+  <div class="faq-content" id="faq4">
+    <div class="faq-questions">
+      <div class="faq-question selected">How can I contact support?</div>
+      <div class="faq-question">Where can I find help articles?</div>
+    </div>
+    <div class="faq-steps">
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png"
+          alt="Support"
+        >
+        <div class="faq-step-title">Contact Support</div>
+        <div class="faq-step-desc">Reach us via chat, email, or phone for any help you need.</div>
+      </div>
+      <div class="faq-step">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1046/1046786.png"
+          alt="Help Center"
+        >
+        <div class="faq-step-title">Help Center</div>
+        <div class="faq-step-desc">Browse our help articles for quick answers.</div>
+      </div>
+    </div>
+  </div>
+  <div class="faq-desc">
+    Order.UK simplifies the food ordering process. Browse through our diverse menu, select your favorite dishes, and
+    proceed to checkout. Your delicious meal will be on its way to your doorstep in no time!
+  </div>
+</div>
+<script>
+  const faqTabs = document.querySelectorAll('.faq-tab');
+  const faqContents = document.querySelectorAll('.faq-content');
+  faqTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      faqTabs.forEach((t) => t.classList.remove('active'));
+      faqContents.forEach((c) => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  const faqAnswerContents = document.querySelectorAll('.faq-steps');
+  faqQuestions.forEach((question) => {
+    question.addEventListener('click', () => {
+      faqQuestions.forEach((q) => q.classList.remove('selected'));
+      faqAnswerContents.forEach((c) => c.classList.remove('active'));
+      question.classList.add('selected');
+
+      console.log(question);
+      document.getElementById(question.dataset.tab).classList.add('active');
+    });
+  });
+</script>
